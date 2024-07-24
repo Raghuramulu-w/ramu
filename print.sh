@@ -2,8 +2,12 @@
 NUMBER=1
 for number in $NUMBER
 do 
-if [ $number -ne 1000 ]
+if [ $number -ge 1000 ]
 then 
-    echo -e "the numbers are 1 to 1000 $number"
+   num=$number
+    echo -e  $num
+    #number=($number)+1
+    
+
 fi
 done 
