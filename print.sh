@@ -6,7 +6,8 @@ if [ $number -ge 1000 ]
 then 
    num=$number
     echo -e  $num
-    #number=($number)+1
+    
+    number=($num)+1
     
 
 fi
