@@ -21,15 +21,16 @@ if [ $ID -ne 0 ]
 else 
     echo -e "$G you are root user"
 fi
-cp mongo.repo /etc/yum.repos.d/mongo.repo
-VALIDATE $? "MONGO COPYING"
-dnf install mongodb-org -y 
-VALIDATE $? "mongodbinstall"
-systemctl enable mongod
-VALIDATE $? "enabling mongodb"
-systemctl restart mongod
-VALIDATE $? "reatarting mongod"
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+VALIDATE $? "remi-release"
+dnf module enable redis:remi-6.2 -y
+VALIDATE $? "redisenable"
+dnf install redis -y
+VALIDATE $? "redis instalation "
+
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf
 VALIDATE $? "remote update"
-systemctl restart mongod
-VALIDATE $? "restart success"
+systemctl enable redis
+VALIDATE $? "enabling redis"
+systemctl start redis
+VALIDATE $? "start redis success"
