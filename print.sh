@@ -1,6 +1,6 @@
 #!/bin/bash
 NUMBER=1
-for number as $NUMBER
+for number in $NUMBER
 do 
 if [ $number -ne 1000 ]
 then 
